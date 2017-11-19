@@ -4,8 +4,8 @@ import { WebService } from './web.service';
     // tslint:disable-next-line:component-selector
     selector: 'messages',
     template: `
-    <div *ngFor="let message of messages">
-    <mat-card style="margin:8px">
+    <div *ngFor="let message of webService.messages">
+    <mat-card class="card">
     <mat-card-title>{{message.owner}}</mat-card-title>
     <mat-card-content>{{message.text}}</mat-card-content>
     </mat-card>
@@ -13,13 +13,5 @@ import { WebService } from './web.service';
     `
 })
 export class MessagesComponent {
-
     constructor(private webService: WebService) {}
-
-    // tslint:disable-next-line:use-life-cycle-interface
-    async ngOnInit() {
-        var response = await this.webService.getMessages();
-        this.messages = response.json();
-    }
-    messages = [];
 }
