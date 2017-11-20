@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { WebService } from './web.service';
+import { AuthService } from './auth.service';
+
 @Component({
     // tslint:disable-next-line:component-selector
     selector: 'new-message',
     template: `
     <mat-card class="card">
     <mat-card-content>
-    <mat-input-container>
-    <input [(ngModel)]="message.owner" matInput placeholder="Name">
-    </mat-input-container>
     <mat-input-container>
         <textarea [(ngModel)]="message.text" matInput placeholder="Message"></textarea>
     </mat-input-container>
@@ -21,9 +20,9 @@ import { WebService } from './web.service';
 })
 export class NewMessageComponent {
 
-    constructor(private webService: WebService) {}
+    constructor(private webService: WebService, private authService: AuthService) {}
     message = {
-        owner : '',
+        owner : this.authService.name,
         text : ''
     };
 
