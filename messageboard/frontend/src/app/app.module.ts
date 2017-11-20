@@ -8,9 +8,11 @@ import { AppComponent } from './app.component';
 import { MessagesComponent } from './messages.component';
 import { HttpModule} from '@angular/http';
 import { NewMessageComponent } from './new-message.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavComponent } from './nav.component';
 import { HomeComponent } from './home.component';
+import { RegisterComponent } from './register.component';
+import { AuthService } from './auth.service';
 
 var routes = [
   {
@@ -24,18 +26,22 @@ var routes = [
 {
   path: 'messages/:Name',
   component: MessagesComponent
+},
+{
+  path: 'register',
+  component: RegisterComponent
 }
 ];
 
 @NgModule({
   declarations: [
-    AppComponent, MessagesComponent, NewMessageComponent, NavComponent, HomeComponent
+    AppComponent, MessagesComponent, NewMessageComponent, NavComponent, HomeComponent, RegisterComponent
   ],
   imports: [
     BrowserModule, HttpModule, BrowserAnimationsModule, MatButtonModule, MatCardModule, MatInputModule, MatSnackBarModule, 
-    MatToolbarModule, FormsModule, RouterModule.forRoot(routes)
+    MatToolbarModule, FormsModule, RouterModule.forRoot(routes), ReactiveFormsModule
   ],
-  providers: [ WebService ],
+  providers: [ WebService, AuthService ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
